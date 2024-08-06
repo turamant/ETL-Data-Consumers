@@ -4,4 +4,5 @@ dagster
 pymongo
 asyncpg
 sqlalchemy[asyncio]
+pandas
 
