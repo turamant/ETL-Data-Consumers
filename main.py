@@ -1,5 +1,8 @@
 from fastapi import FastAPI
 
+from my_dagster.dagster_project import etl_job, DagsterInstance
+
+
 app = FastAPI()
 
 @app.get("/")
@@ -8,5 +11,8 @@ def read_root():
 
 @app.post("/etl/run")
 def run_etl():
-    # Здесь будет вызываться ETL процесс
-    return {"status": "ETL запуск"}
+    instance = DagsterInstance.get()
+    result = etl_job.execute_in_process(instance=instance)
+    if result.success:
+        return {"status": "ETL succeeded"}
+    return {"status": "ETL failed"}
