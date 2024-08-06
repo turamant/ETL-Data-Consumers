@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+dagster
+pymongo
+asyncpg
+sqlalchemy[asyncio]
